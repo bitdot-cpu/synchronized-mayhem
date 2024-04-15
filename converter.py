@@ -66,7 +66,7 @@ def generate_title(
 
 def repair_input(input: str, data_types: list[str]) -> str:
     ic(data_types)
-    if input in data_types and input == "ascii":
+    if input.upper() in data_types and input == "ASCII":
         return "ASCII"
     elif input.title() in data_types:
         return input.title()
