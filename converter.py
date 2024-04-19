@@ -7,7 +7,9 @@ def main() -> None:
     title()
     input_type: str = get_type("input")
     target_type: str = get_type("target", input_type)
-    ic(input_type, target_type)
+
+    input_value: str = get_value("input", input_type)
+    target_value: str = get_value("target", target_type)
 
 
 def title(error_message: str = "") -> None:
@@ -72,7 +74,7 @@ def repair_input(input: str, data_types: list[str]) -> str:
         return input.title()
     else:
         try:
-            int_input:int = int(input)
+            int_input: int = int(input)
 
             if int_input < 1:
                 raise ValueError()
@@ -125,6 +127,33 @@ def calculate_spacing(item: str, menu_length: int) -> tuple[str, str]:
     right_spacing: str = " " * (menu_length - spacing_amount - item_length)
 
     return left_spacing, right_spacing
+
+
+def get_value(input:str, value_type:str):
+    """
+    Prompt the user for a value.
+    Based on get_case ("input" | "target").
+    Second argument is input/target's data type
+    Features:
+        -
+        - Error handling with title()
+    """
+    try:
+        pass # All kinds of processing
+    except:
+        raise ValueError()
+    return input
+
+
+def convert_str_to_bin(text: str) -> str:
+    binary: list[str] = []
+
+    for character in text:
+        character_binary: list[str] = []
+        character_binary.append(f"{ord(character):08b}")
+        binary += character_binary
+
+    return f'{" ".join(binary)}'
 
 
 if __name__ == "__main__":
