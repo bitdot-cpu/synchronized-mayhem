@@ -7,6 +7,7 @@ def main() -> None:
     title()
     input_type: str = get_type("input")
     target_type: str = get_type("target", input_type)
+    ic(input_type, target_type)
 
 
 def title(error_message: str = "") -> None:
@@ -65,15 +66,18 @@ def generate_title(
 
 
 def repair_input(input: str, data_types: list[str]) -> str:
-    ic(data_types)
-    if input.upper() in data_types and input == "ASCII":
+    if input.upper() in data_types and input.upper() == "ASCII":
         return "ASCII"
     elif input.title() in data_types:
         return input.title()
     else:
         try:
-            int(input)
-            return data_types[input - 1]
+            int_input:int = int(input)
+
+            if int_input < 1:
+                raise ValueError()
+
+            return data_types[int_input - 1]
         except:
             raise ValueError()
 
@@ -108,7 +112,7 @@ def load_menu(menu_list: list[str]) -> str:
     return f"{'\n'.join(menu)}\n"
 
 
-def calculate_spacing(item: str, menu_length: int) -> str:
+def calculate_spacing(item: str, menu_length: int) -> tuple[str, str]:
     item_length: int = len(item)
     # ↓ Make an even item_length for calculating spacing_amount division
     even_item_length: int = item_length
